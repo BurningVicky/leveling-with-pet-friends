@@ -1,0 +1,19 @@
+# Banco de dados SQLite local
+database/*.sqlite
+database/*.db
+*.sqlite
+*.db
+
+# Configurações de ambiente ou credenciais locais
+.env
+config.local.php
+
+# Dependências e pacotes
+/vendor/
+
+# Arquivos de sistema operacional e editores de código
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
