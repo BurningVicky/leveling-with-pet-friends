@@ -12,7 +12,7 @@ $isLoggedIn = !empty($_SESSION['admin_logged']);
     <title>Leveling With Pet Friends | Adoção Responsável</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="site-wrapper">
     <header class="main-header">
         <div class="container header-container">
             <a href="index.php?route=home" class="brand-logo">
@@ -34,4 +34,6 @@ $isLoggedIn = !empty($_SESSION['admin_logged']);
             </nav>
         </div>
     </header>
-    <main class="main-content container"></main>
+
+    <!-- Início do container principal (NÃO fechar a tag aqui!) -->
+    <main class="main-content container">

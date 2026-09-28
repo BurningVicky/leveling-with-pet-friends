@@ -13,7 +13,8 @@ class AnimalController {
 
     // Listagem pública (Home e catálogo)
     public function home(): void {
-        $animaisDestaque = array_slice($this->animalModel->listarTodos(), 0, 3);
+        // Define $animais com os 3 registros mais recentes para a view
+        $animais = array_slice($this->animalModel->listarTodos(), 0, 3);
         require_once __DIR__ . '/../Views/public/home.php';
     }
 
