@@ -70,6 +70,10 @@ switch ($route) {
         (new AdoptionsController())->manage();
         break;
 
+    case 'admin-adoption-status':
+        (new AdoptionsController())->updateStatus();
+        break;
+
     case 'admin-register':
         (new AuthController())->register();
         break;

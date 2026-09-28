@@ -59,6 +59,15 @@ class Animal {
         ]);
     }
 
+    public function atualizarStatus(int $id, string $status): bool {
+    $sql = "UPDATE animal SET status = :status WHERE id = :id";
+    $stmt = $this->db->prepare($sql);
+    return $stmt->execute([
+        ':status' => $status,
+        ':id'     => $id
+    ]);
+}
+
     public function deletar(int $id): bool {
         $stmt = $this->db->prepare("DELETE FROM animal WHERE id = :id");
         return $stmt->execute([':id' => $id]);
