@@ -3,7 +3,7 @@
 <section class="hero-section">
     <div class="hero-content">
         <h1>Encontre o seu companheiro de Aventuras</h1>
-        <p>Adote um amigo de quatro patas, descubra novos horitontes!</p>
+        <p>Adote um amigo de quatro patas, descubra novos horizontes!</p>
         <a href="index.php?route=animals" class="btn btn-primary">Ver Pets Disponíveis</a>
     </div>
 </section>
