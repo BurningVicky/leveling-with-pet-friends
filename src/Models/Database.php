@@ -5,7 +5,6 @@ class Database {
 
     public static function getConnection(): PDO {
         if (self::$instance === null) {
-            
             $dbPath = __DIR__ . '/../../database.sqlite';
             try {
                 self::$instance = new PDO("sqlite:" . $dbPath);
