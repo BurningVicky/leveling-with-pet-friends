@@ -5,7 +5,7 @@
 
     <?php if (!empty($_GET['status']) && $_GET['status'] === 'success'): ?>
         <div style="background: #dcfce7; color: #166534; padding: 1rem 1.25rem; border-radius: 10px; margin-bottom: 1.5rem; font-weight: 500;">
-            🎉 Solicitação de adoção enviada com sucesso! A nossa equipe entrará em contacto em breve.
+            🎉 Solicitação de adoção enviada com sucesso! A nossa equipe entrará em contato em breve.
         </div>
     <?php endif; ?>
 
