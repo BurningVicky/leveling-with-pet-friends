@@ -12,12 +12,6 @@ class AuthController {
     }
 
     public function login(): void {
-        // Se já estiver logado, redireciona direto para a dashboard
-        if (!empty($_SESSION['admin_logged'])) {
-            header('Location: index.php?route=admin-dashboard');
-            exit;
-        }
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $email = trim($_POST['email'] ?? '');
             $senha = trim($_POST['senha'] ?? '');
@@ -39,6 +33,11 @@ class AuthController {
                 require_once __DIR__ . '/../Views/admin/login.php';
             }
         } else {
+            // Se já estiver logado e apenas acessar a tela de login via GET, vai pro dashboard
+            if (!empty($_SESSION['admin_logged'])) {
+                header('Location: index.php?route=admin-dashboard');
+                exit;
+            }
             require_once __DIR__ . '/../Views/admin/login.php';
         }
     }

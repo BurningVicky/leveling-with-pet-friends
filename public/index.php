@@ -1,4 +1,10 @@
 <?php
+
+// Inicia a sessão se ainda não estiver iniciada
+if(session_status() === PHP_SESSION_NONE){
+    session_start();
+}
+
 // Exibe erros em ambiente de desenvolvimento
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
