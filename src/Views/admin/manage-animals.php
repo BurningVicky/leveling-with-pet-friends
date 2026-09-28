@@ -10,10 +10,10 @@
     </div>
 
     <div class="admin-grid-layout">
-        <!-- Formulário Moderno -->
+        <!-- Formulário de Cadastro com Upload -->
         <div class="card-box form-box">
             <h3>Cadastrar Novo Pet</h3>
-            <form action="index.php?route=admin-animal-create" method="POST" class="form-styled">
+            <form action="index.php?route=admin-animal-create" method="POST" enctype="multipart/form-data" class="form-styled">
                 <div class="form-group">
                     <label for="nome">Nome do Pet</label>
                     <input type="text" name="nome" id="nome" required placeholder="Ex: Mel, Thor...">
@@ -54,9 +54,10 @@
                     <input type="text" name="cor" id="cor" required placeholder="Ex: Caramelo, Preto e Branco">
                 </div>
 
+                <!-- Campo de Upload de Foto -->
                 <div class="form-group">
-                    <label for="imagem">URL da Imagem (Link da foto)</label>
-                    <input type="url" name="imagem" id="imagem" placeholder="https://exemplo.com/foto.jpg">
+                    <label for="imagem_arquivo">Foto do Pet</label>
+                    <input type="file" name="imagem_arquivo" id="imagem_arquivo" accept="image/png, image/jpeg, image/webp">
                 </div>
 
                 <div class="form-group">
@@ -73,7 +74,7 @@
             </form>
         </div>
 
-        <!-- Tabela Elegante -->
+        <!-- Tabela com Exibição das Imagens Salvas -->
         <div class="card-box table-box">
             <h3>Animais Cadastrados</h3>
             <div class="table-responsive">
