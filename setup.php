@@ -22,6 +22,7 @@ try {
             idade INTEGER NOT NULL,
             raca VARCHAR(50) NOT NULL,
             cor VARCHAR(50) NOT NULL,
+            imagem VARCHAR(255) DEFAULT 'https://via.placeholder.com/300x200?text=Sem+Foto',
             status VARCHAR(30) DEFAULT 'Disponível',
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
@@ -55,7 +56,21 @@ try {
         ");
     }
 
-    echo "Banco de dados inicializado e populado com sucesso!\n";
+    // Verifica se a coluna 'imagem' existe (caso a tabela já tenha sido criada anteriormente)
+    $columns = $db->query("PRAGMA table_info(animal)")->fetchAll();
+    $hasImagem = false;
+    foreach ($columns as $col) {
+        if ($col['name'] === 'imagem') {
+            $hasImagem = true;
+            break;
+        }
+    }
+
+    if (!$hasImagem) {
+        $db->exec("ALTER TABLE animal ADD COLUMN imagem VARCHAR(255) DEFAULT 'https://via.placeholder.com/300x200?text=Sem+Foto'");
+    }
+
+    echo "Banco atualizado com suporte a imagens!\n";
 } catch (Exception $e) {
-    echo "Erro ao inicializar o banco: " . $e->getMessage() . "\n";
+    echo "Erro: " . $e->getMessage() . "\n";
 }
