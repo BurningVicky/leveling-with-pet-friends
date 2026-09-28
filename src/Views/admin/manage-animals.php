@@ -103,6 +103,9 @@
                                         </span>
                                     </td>
                                     <td>
+                                        <a href="index.php?route=admin-animal-edit&id=<?= $pet['id'] ?>" class="btn btn-outline btn-sm">
+                                            Editar
+                                        </a>
                                         <a href="index.php?route=admin-animal-delete&id=<?= $pet['id'] ?>" 
                                            class="btn-danger-sm" 
                                            onclick="return confirm('Tem certeza que deseja remover este registro?');">
