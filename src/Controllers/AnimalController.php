@@ -89,6 +89,63 @@ class AnimalController {
         }
     }
 
+    public function edit(): void {
+        $this->verificarAuth();
+
+        $id = (int)($_GET['id'] ?? 0);
+        $animal = $this->animalModel->buscarPorId($id);
+
+        if (!$animal) {
+            header('Location: index.php?route=admin-manage-animals');
+            exit;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $caminhoImagem = $animal['imagem']; // Mantém a imagem antiga por padrão
+
+            // Verifica se um novo arquivo de imagem foi enviado
+            if (isset($_FILES['imagem_arquivo']) && $_FILES['imagem_arquivo']['error'] === UPLOAD_ERR_OK) {
+                $fileTmpPath = $_FILES['imagem_arquivo']['tmp_name'];
+                $fileName = $_FILES['imagem_arquivo']['name'];
+                $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+
+                $extensoesPermitidas = ['jpg', 'jpeg', 'png', 'webp'];
+
+                if (in_array($fileExtension, $extensoesPermitidas)) {
+                    $novoNome = uniqid('pet_', true) . '.' . $fileExtension;
+                    $diretorioUpload = __DIR__ . '/../../public/uploads/';
+
+                    if (!is_dir($diretorioUpload)) {
+                        mkdir($diretorioUpload, 0755, true);
+                    }
+
+                    $caminhoDestino = $diretorioUpload . $novoNome;
+
+                    if (move_uploaded_file($fileTmpPath, $caminhoDestino)) {
+                        $caminhoImagem = 'uploads/' . $novoNome;
+                    }
+                }
+            }
+
+            $dados = [
+                'nome'    => trim($_POST['nome'] ?? ''),
+                'especie' => trim($_POST['especie'] ?? ''),
+                'sexo'    => trim($_POST['sexo'] ?? ''),
+                'idade'   => (int)($_POST['idade'] ?? 0),
+                'raca'    => trim($_POST['raca'] ?? ''),
+                'cor'     => trim($_POST['cor'] ?? ''),
+                'imagem'  => $caminhoImagem,
+                'status'  => trim($_POST['status'] ?? 'Disponível')
+            ];
+
+            $this->animalModel->atualizar($id, $dados);
+            header('Location: index.php?route=admin-manage-animals');
+            exit;
+        }
+
+        require_once __DIR__ . '/../Views/admin/edit-animal.php';
+    }
+
     public function delete(): void {
         $this->verificarAuth();
         $id = (int)($_GET['id'] ?? 0);
