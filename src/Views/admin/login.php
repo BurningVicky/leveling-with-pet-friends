@@ -1,7 +1,7 @@
 <?php require_once __DIR__ . '/../templates/header.php'; ?>
 
 <div class="auth-container">
-    <div class="auth-box">
+    <div class="auth-card">
         <h2>Acesso Administrativo</h2>
         <p>Informe as suas credenciais para gerir o sistema.</p>
 

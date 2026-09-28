@@ -20,7 +20,7 @@ class AnimalController {
     public function list(): void {
         $especie = $_GET['especie'] ?? null;
         $animais = $this->animalModel->listarTodos($especie);
-        require_once __DIR__ . '/../Views/public/animals.php';
+        require_once __DIR__ . '/../Views/public/list-animals.php';
     }
 
     public function details(): void {

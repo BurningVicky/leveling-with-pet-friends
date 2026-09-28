@@ -1,32 +1,60 @@
-/* --- RESET E ESTILOS GERAIS --- */
+/* --- RESET & VARIÁVEIS --- */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+:root {
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --secondary: #10b981;
+    --secondary-hover: #059669;
+    --bg-dark: #0f172a;
+    --bg-light: #f8fafc;
+    --card-bg: #ffffff;
+    --text-main: #334155;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --radius: 10px;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f6f9;
-    color: #333;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-main);
     line-height: 1.6;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
+/* --- ESTRUTURA PRINCIPAL E CENTRALIZAÇÃO --- */
 .container {
-    width: 90%;
-    max-width: 1200px;
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 2.5rem 1.5rem;
+    width: 100%;
+    max-width: 1140px;
     margin: 0 auto;
 }
 
-/* --- CABEÇALHO E NAVEGAÇÃO --- */
+/* --- HEADER & NAV --- */
 .main-header {
-    background-color: #1a252f;
+    background-color: var(--bg-dark);
     color: #fff;
-    padding: 1rem 0;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 1.2rem 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
 }
 
 .header-container {
@@ -38,8 +66,11 @@ body {
 .brand-logo {
     color: #fff;
     text-decoration: none;
-    font-size: 1.25rem;
-    font-weight: bold;
+    font-size: 1.35rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .main-nav ul {
@@ -50,176 +81,420 @@ body {
 }
 
 .main-nav a {
-    color: #ecf0f1;
+    color: #cbd5e1;
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.2s;
+    transition: all 0.2s;
 }
 
 .main-nav a:hover {
-    color: #3498db;
+    color: #38bdf8;
 }
 
-.admin-badge a {
-    background-color: #34495e;
-    padding: 0.4rem 0.8rem;
-    border-radius: 4px;
-}
-
-/* --- BOTOES E COMPONENTES --- */
-.btn {
-    display: inline-block;
-    padding: 0.6rem 1.2rem;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: bold;
-    cursor: pointer;
-    border: none;
+/* --- HERO BANNER --- */
+.hero-banner {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    color: #fff;
+    padding: 3.5rem 2rem;
+    border-radius: var(--radius);
     text-align: center;
+    margin-bottom: 2.5rem;
+    box-shadow: var(--shadow);
 }
 
-.btn-primary {
-    background-color: #3498db;
-    color: #fff;
+.hero-text h1 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
 }
 
-.btn-primary:hover {
-    background-color: #2980b9;
+.hero-text p {
+    font-size: 1.1rem;
+    color: #94a3b8;
+    margin-bottom: 1.8rem;
 }
 
-.btn-secondary {
-    background-color: #2ecc71;
-    color: #fff;
-}
-
-.btn-secondary:hover {
-    background-color: #27ae60;
-}
-
-.btn-outline {
-    background-color: transparent;
-    border: 1px solid #7f8c8d;
-    color: #333;
-}
-
-.btn-outline:hover {
-    background-color: #e2e8f0;
-}
-
-.btn-block {
-    width: 100%;
-}
-
-/* --- CONTEÚDO E CARDS --- */
-.main-content {
-    flex: 1;
-    padding: 2rem 0;
-}
-
-.grid-animais {
+/* --- PET CARDS GRID --- */
+.cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
+    gap: 2rem;
     margin-top: 1.5rem;
 }
 
-.card-animal {
-    background: #fff;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 1.5rem;
+.pet-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
     display: flex;
     flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.pet-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.pet-card-image {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    background-color: #f1f5f9;
+}
+
+.pet-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pet-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(15, 23, 42, 0.8);
+    color: #fff;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.pet-card-body {
+    padding: 1.25rem;
+    flex: 1;
+}
+
+.pet-card-body h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.pet-card-footer {
+    padding: 1rem 1.25rem;
+    background: #f8fafc;
+    border-top: 1px solid var(--border);
+}
+
+/* --- CENTRALIZAÇÃO E ENQUADRAMENTO DA PÁGINA --- */
+.admin-page-container,
+.dashboard-wrapper {
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 1rem 0;
+}
+
+/* Flexbox para cabeçalhos de páginas internas */
+.page-header-flex {
+    display: flex;
     justify-content: space-between;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    align-items: center;
+    margin-bottom: 2rem;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
-.tag-especie {
-    display: inline-block;
-    background-color: #e8f4f8;
-    color: #2980b9;
-    padding: 0.2rem 0.6rem;
-    border-radius: 12px;
-    font-size: 0.85rem;
-    margin: 0.5rem 0;
+.page-header-flex h2 {
+    font-size: 1.75rem;
+    color: var(--bg-dark);
 }
 
-/* --- FORMULÁRIOS E AUTENTICAÇÃO --- */
+.subtitle {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* --- TELA DE LOGIN E CADASTRO DE ADMIN (Centralização Completa) --- */
 .auth-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2rem 0;
-}
-
-.auth-box {
-    background: #fff;
-    border: 2px solid #333;
-    padding: 2rem;
-    border-radius: 8px;
+    min-height: calc(80vh - 120px); /* Centraliza verticalmente no meio da tela */
     width: 100%;
-    max-width: 420px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 2rem 1rem;
 }
 
-.form-group {
-    margin-bottom: 1.2rem;
+.auth-card {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 440px; /* Largura perfeita para formulários de login/cadastro */
+    box-shadow: var(--shadow);
 }
 
-.form-group label {
-    display: block;
-    font-weight: bold;
+.auth-card h2 {
+    text-align: center;
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+    color: var(--bg-dark);
+}
+
+.auth-card p.auth-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 1.8rem;
+}
+
+.dashboard-welcome {
+    margin-bottom: 2rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.8rem;
+}
+
+.stat-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.8rem;
+    display: flex;
+    gap: 1.2rem;
+    box-shadow: var(--shadow);
+}
+
+.stat-icon {
+    font-size: 2.5rem;
+    line-height: 1;
+}
+
+.stat-info h3 {
+    font-size: 1.15rem;
     margin-bottom: 0.4rem;
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 0.6rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
+.stat-info p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
 }
 
 /* --- TABELAS ADMINISTRATIVAS --- */
-.data-table {
+.admin-grid-layout {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+@media (max-width: 900px) {
+    .admin-grid-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.card-box {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.8rem;
+    box-shadow: var(--shadow);
+}
+
+.data-table-modern {
     width: 100%;
     border-collapse: collapse;
-    background: #fff;
     margin-top: 1rem;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-.data-table th,
-.data-table td {
-    padding: 0.8rem 1rem;
-    border: 1px solid #e2e8f0;
+.data-table-modern th,
+.data-table-modern td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--border);
     text-align: left;
+    font-size: 0.95rem;
 }
 
-.data-table th {
-    background-color: #f8fafc;
-    font-weight: bold;
+.data-table-modern th {
+    background: #f1f5f9;
+    color: var(--text-main);
+    font-weight: 600;
 }
 
-.status-badge {
-    padding: 0.2rem 0.5rem;
+.table-thumb {
+    width: 48px;
+    height: 48px;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* --- BADGES --- */
+.badge {
+    padding: 0.25rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.badge-disponível { background: #dcfce7; color: #166534; }
+.badge-adotado { background: #dbeafe; color: #1e40af; }
+.badge-em-processo { background: #fef9c3; color: #854d0e; }
+.badge-indisponível { background: #fee2e2; color: #991b1b; }
+
+/* --- CONTAINER DAS IMAGENS DOS PETS --- */
+.pet-card {
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--border, #e2e8f0);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Garante que todos os cards na mesma linha tenham a mesma altura */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pet-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* Área da Foto com Altura Fixa */
+.pet-card-image {
+    position: relative;
+    width: 100%;
+    height: 220px; /* Altura padronizada para todas as fotos */
+    background-color: #f1f5f9;
+    overflow: hidden;
+}
+
+/* Formatação da Imagem */
+.pet-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Corta centralizado sem distorcer as proporções */
+    object-position: center;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.pet-card:hover .pet-card-image img {
+    transform: scale(1.05); /* Efeito suave de zoom ao passar o mouse */
+}
+
+/* Badge de Espécie por cima da imagem */
+.pet-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(4px);
+    color: #ffffff;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    z-index: 2;
+}
+
+/* Corpo e Rodapé do Card */
+.pet-card-body {
+    padding: 1.25rem;
+    flex: 1; /* Ocupa o espaço restante proporcionalmente */
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.pet-card-body h3 {
+    font-size: 1.2rem;
+    color: #0f172a;
+    margin-bottom: 0.4rem;
+}
+
+.pet-card-body p {
+    font-size: 0.9rem;
+    color: #475569;
+}
+
+.pet-card-footer {
+    padding: 1rem 1.25rem;
+    background: #f8fafc;
+    border-top: 1px solid var(--border, #e2e8f0);
+    margin-top: auto;
+}
+
+/* Thumbnails da Tabela de Administração */
+.table-thumb {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    object-fit: cover;
+    object-position: center;
+    border: 1px solid var(--border, #e2e8f0);
+    display: block;
+}
+
+/* --- BOTOES --- */
+.btn {
+    display: inline-block;
+    padding: 0.6rem 1.25rem;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-hover); }
+
+.btn-secondary { background: var(--secondary); color: #fff; }
+.btn-secondary:hover { background: var(--secondary-hover); }
+
+.btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text-main); }
+.btn-outline:hover { background: #f1f5f9; }
+
+.btn-sm { padding: 0.4rem 0.8rem; font-size: 0.85rem; }
+.btn-block { width: 100%; display: block; }
+
+.btn-danger-sm {
+    background: #ef4444;
+    color: #fff;
+    padding: 0.3rem 0.6rem;
     border-radius: 4px;
-    font-size: 0.85rem;
-    font-weight: bold;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
 }
 
-.status-badge.disponível { background-color: #d4edda; color: #155724; }
-.status-badge.adotado { background-color: #c3e6cb; color: #155724; }
-.status-badge.em-processo { background-color: #fff3cd; color: #856404; }
-.status-badge.indisponível { background-color: #f8d7da; color: #721c24; }
+.btn-danger-sm:hover { background: #dc2626; }
 
-/* --- RODAPÉ --- */
+/* --- FORMULÁRIOS --- */
+.form-group { margin-bottom: 1.1rem; }
+.form-group label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.3rem; }
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+/* --- FOOTER --- */
 .main-footer {
-    background-color: #1a252f;
-    color: #bdc3c7;
-    padding: 1.5rem 0;
+    background: var(--bg-dark);
+    color: #94a3b8;
+    padding: 1.8rem 0;
     margin-top: auto;
     font-size: 0.9rem;
 }
