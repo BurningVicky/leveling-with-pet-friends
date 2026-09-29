@@ -16,7 +16,7 @@
             <form action="index.php?route=admin-animal-create" method="POST" enctype="multipart/form-data" class="form-styled">
                 <div class="form-group">
                     <label for="nome">Nome do Pet</label>
-                    <input type="text" name="nome" id="nome" required placeholder="Ex: Mel, Thor...">
+                    <input type="text" name="nome" id="nome" required placeholder="Ex: Alvina, Sif...">
                 </div>
 
                 <div class="form-row">
@@ -45,7 +45,7 @@
 
                     <div class="form-group">
                         <label for="raca">Raça</label>
-                        <input type="text" name="raca" id="raca" required placeholder="Ex: Vira-lata, Poodle...">
+                        <input type="text" name="raca" id="raca" required placeholder="Ex: Vira-lata, Palico, Sphynx...">
                     </div>
                 </div>
 
