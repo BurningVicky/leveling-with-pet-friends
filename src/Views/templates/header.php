@@ -35,5 +35,5 @@ $isLoggedIn = !empty($_SESSION['admin_logged']);
         </div>
     </header>
 
-    <!-- Início do container principal (NÃO fechar a tag aqui!) -->
+    <!-- Início do container principal -->
     <main class="main-content container">
